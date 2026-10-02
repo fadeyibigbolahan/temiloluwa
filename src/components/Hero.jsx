@@ -156,7 +156,7 @@ const Hero = ({ setActiveSection }) => {
             {/* Main headline */}
             <motion.h1
               variants={itemVariants}
-              className="font-sora font-bold text-[#0B0D12] leading-[1.02] tracking-tight text-4xl sm:text-5xl md:text-6xl lg:text-6xl mb-6"
+              className="font-sora font-bold text-[#0B0D12] leading-[1.15] tracking-tight text-4xl sm:text-5xl md:text-6xl lg:text-6xl mb-6"
             >
               I build growth and{" "}
               <span className="relative inline-block">
@@ -225,7 +225,7 @@ const Hero = ({ setActiveSection }) => {
             >
               <motion.button
                 onClick={() => goTo("work")}
-                className="group relative inline-flex items-center gap-3 font-sora text-sm font-semibold px-7 py-4 rounded-xl bg-gradient-to-r from-[#6D5AE6] to-[#5B4FD6] text-white overflow-hidden shadow-lg shadow-[#6D5AE6]/25"
+                className="group relative inline-flex items-center gap-3 font-sora text-sm font-semibold px-5 py-3 md:px-7 md:py-4 rounded-xl bg-gradient-to-r from-[#6D5AE6] to-[#5B4FD6] text-white overflow-hidden shadow-lg shadow-[#6D5AE6]/25"
                 whileHover={{ scale: 1.03, y: -2 }}
                 whileTap={{ scale: 0.98 }}
               >
@@ -239,7 +239,7 @@ const Hero = ({ setActiveSection }) => {
 
               <motion.button
                 onClick={() => goTo("contact")}
-                className="group inline-flex items-center gap-3 font-sora text-sm font-semibold px-7 py-4 rounded-xl border border-black/15 text-[#0B0D12] hover:border-[#6D5AE6]/40 hover:bg-[#6D5AE6]/[0.04] transition-all duration-300"
+                className="group inline-flex items-center gap-3 font-sora text-sm font-semibold px-5 py-3 md:px-7 md:py-4 rounded-xl border border-black/15 text-[#0B0D12] hover:border-[#6D5AE6]/40 hover:bg-[#6D5AE6]/[0.04] transition-all duration-300"
                 whileHover={{ scale: 1.03, y: -2 }}
                 whileTap={{ scale: 0.98 }}
               >

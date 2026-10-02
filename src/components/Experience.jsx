@@ -24,7 +24,7 @@ const Experience = () => {
       period: "2025 — Present",
       current: true,
       color: "#2a71c2",
-      gradient: "from-[#2a71c2] to-[#FF6B8A]",
+      gradient: "from-[#2a71c2] to-[#000000]",
       highlights: [
         "Develop and execute integrated marketing and brand communication initiatives",
         "Develop SEO-optimized content for websites, blogs, email newsletters",

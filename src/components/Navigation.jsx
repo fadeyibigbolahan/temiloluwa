@@ -87,7 +87,7 @@ const Navigation = ({
                 <span className="text-[#2a71c2]">.</span>
               </span>
               {/* Animated underline */}
-              <motion.span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-[#2a71c2] to-[#FF6B8A] group-hover:w-full transition-all duration-300" />
+              <motion.span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-[#2a71c2] to-[#000000] group-hover:w-full transition-all duration-300" />
             </motion.button>
 
             {/* Desktop Navigation */}
@@ -97,7 +97,7 @@ const Navigation = ({
             >
               {/* Active indicator */}
               <motion.div
-                className="absolute -bottom-1 h-0.5 bg-gradient-to-r from-[#2a71c2] to-[#FF6B8A]"
+                className="absolute -bottom-1 h-0.5 bg-gradient-to-r from-[#2a71c2] to-[#000000]"
                 animate={{
                   left: activeIndicator.left,
                   width: activeIndicator.width,
@@ -149,7 +149,7 @@ const Navigation = ({
                 <span className="relative z-10">Let's Connect</span>
                 <ArrowUpRight className="relative z-10 w-4 h-4 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
                 <motion.div
-                  className="absolute inset-0 bg-gradient-to-r from-[#2a71c2] to-[#FF6B8A]"
+                  className="absolute inset-0 bg-gradient-to-r from-[#2a71c2] to-[#000000]"
                   initial={{ x: "-100%" }}
                   whileHover={{ x: 0 }}
                   transition={{ duration: 0.3 }}
@@ -259,7 +259,7 @@ const Navigation = ({
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.4 }}
-                  className="w-full inline-flex items-center justify-center gap-2 font-sora text-sm font-semibold px-6 py-4 bg-gradient-to-r from-[#2a71c2] to-[#FF6B8A] text-white rounded-xl shadow-lg shadow-[#2a71c2]/25"
+                  className="w-full inline-flex items-center justify-center gap-2 font-sora text-sm font-semibold px-6 py-4 bg-gradient-to-r from-[#2a71c2] to-[#000000] text-white rounded-xl shadow-lg shadow-[#2a71c2]/25"
                 >
                   Let's Connect
                   <ArrowUpRight className="w-4 h-4" />
@@ -275,7 +275,7 @@ const Navigation = ({
                   <div className="flex items-center gap-2">
                     <Sparkles className="w-4 h-4 text-[#2a71c2]" />
                     <span className="font-sora text-xs text-gray-500">
-                      Marketing & Communications
+                      Growth marketing and AI systems strategist
                     </span>
                   </div>
                 </motion.div>

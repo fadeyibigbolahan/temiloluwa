@@ -19,7 +19,7 @@ const SelectedWork = () => {
       subtitle: "Campaign Messaging & Content Strategy",
       category: "Strategy",
       year: "2024",
-      gradient: "from-[#2a71c2] to-[#FF6B8A]",
+      gradient: "from-[#2a71c2] to-[#000000]",
       link: "https://drive.google.com/drive/folders/1S0w4ZqBovcHnEE3wUKWU8GROyzNNaBiN",
     },
     {

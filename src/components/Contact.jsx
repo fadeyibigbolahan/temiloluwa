@@ -90,7 +90,7 @@ const Contact = () => {
             <motion.h2
               id="contact-heading"
               variants={itemVariants}
-              className="font-sora font-bold text-white leading-[1.02] tracking-tight text-4xl sm:text-5xl md:text-6xl mb-6 max-w-xl"
+              className="font-sora font-bold text-white leading-[1.15] tracking-tight text-4xl sm:text-5xl md:text-6xl mb-6 max-w-xl"
             >
               Have attention but no reliable growth system?
             </motion.h2>

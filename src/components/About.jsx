@@ -107,7 +107,7 @@ const About = () => {
 
             <motion.h2
               variants={itemVariants}
-              className="font-sora font-bold text-[#2A71C2] leading-[1.02] tracking-tight text-4xl sm:text-5xl md:text-6xl mb-8"
+              className="font-sora font-bold text-[#2A71C2] leading-[1.15] tracking-tight text-4xl sm:text-5xl md:text-6xl mb-8"
             >
               Strategy first.
               <br />
