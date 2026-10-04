@@ -10,13 +10,16 @@ import {
   Cpu,
   TrendingUp,
   Workflow,
+  Funnel,
+  Bot,
 } from "lucide-react";
 import freelancer from "../assets/okeowo.png";
 
 const SYSTEM_PILLARS = [
-  { id: "funnels", label: "Funnels", icon: TrendingUp, accent: "#00A876" },
-  { id: "automation", label: "Automation", icon: Cpu, accent: "#6D5AE6" },
-  { id: "content", label: "Content", icon: Workflow, accent: "#E5731F" },
+  { id: "funnels", label: "Funnels", icon: Funnel, accent: "#00A876" },
+  { id: "automation", label: "AI Systems", icon: Bot, accent: "#6D5AE6" },
+  { id: "content", label: "CRM Systems", icon: Workflow, accent: "#E5731F" },
+  { id: "campaigns", label: "Campaigns", icon: TrendingUp, accent: "#00A876" },
 ];
 
 const Hero = ({ setActiveSection }) => {

@@ -7,6 +7,8 @@ import n8n from "../assets/n8n.png";
 import clickfunnels from "../assets/clickfunnels.png";
 import wordpress from "../assets/wordpress.png";
 import meta from "../assets/meta.png";
+import kajabi from "../assets/kajabi.png";
+import linkedIn from "../assets/linkedin.png";
 
 const STATS = [
   {
@@ -19,7 +21,7 @@ const STATS = [
   },
   {
     id: "projects",
-    value: 90,
+    value: 120,
     suffix: "+",
     label: "Client projects",
     icon: Layers,
@@ -50,6 +52,8 @@ const TOOLS = [
   { id: "clickfunnels", name: "ClickFunnels", logo: clickfunnels },
   { id: "wordpress", name: "WordPress", logo: wordpress },
   { id: "meta", name: "Meta", logo: meta },
+  { id: "kajabi", name: "Kajabi", logo: kajabi },
+  { id: "linkedin", name: "LinkedIn", logo: linkedIn },
 ];
 
 // Simple count-up hook
@@ -114,6 +118,78 @@ const StatItem = ({ stat, index, inView }) => {
       <div className="font-sora text-xs md:text-sm text-white/50 mt-1 tracking-wide">
         {stat.label}
       </div>
+    </motion.div>
+  );
+};
+
+// Duplicate tools for seamless infinite loop
+const CAROUSEL_TOOLS = [...TOOLS, ...TOOLS];
+
+const ToolsCarousel = ({ inView }) => {
+  return (
+    <motion.div
+      initial={{ opacity: 0, y: 20 }}
+      animate={inView ? { opacity: 1, y: 0 } : {}}
+      transition={{
+        duration: 0.7,
+        delay: 0.6,
+        ease: [0.22, 1, 0.36, 1],
+      }}
+    >
+      <div className="flex items-center gap-3 mb-8">
+        <span className="font-sora text-[10px] text-white/40 uppercase tracking-[0.25em]">
+          Tools I build with
+        </span>
+        <span className="h-px flex-1 bg-white/[0.08]" />
+      </div>
+
+      {/* Carousel viewport */}
+      <div className="relative overflow-hidden">
+        {/* Edge fade masks */}
+        <div className="absolute left-0 top-0 bottom-0 w-16 md:w-24 bg-gradient-to-r from-[#0B0D12] to-transparent z-10 pointer-events-none" />
+        <div className="absolute right-0 top-0 bottom-0 w-16 md:w-24 bg-gradient-to-l from-[#0B0D12] to-transparent z-10 pointer-events-none" />
+
+        {/* Scrolling track */}
+        <div
+          className="flex items-center gap-12 md:gap-20 w-max animate-tools-scroll"
+          style={{
+            animationPlayState: inView ? "running" : "paused",
+          }}
+        >
+          {CAROUSEL_TOOLS.map((tool, i) => (
+            <div
+              key={`${tool.id}-${i}`}
+              className="group flex items-center justify-center flex-shrink-0"
+            >
+              <img
+                src={tool.logo}
+                alt={tool.name}
+                title={tool.name}
+                loading="lazy"
+                className="h-7 md:h-8 w-auto max-w-[120px] object-contain opacity-40 grayscale invert group-hover:opacity-100 group-hover:grayscale-0 group-hover:invert-0 transition-all duration-500"
+              />
+            </div>
+          ))}
+        </div>
+      </div>
+
+      {/* Keyframes injected via style tag */}
+      <style>{`
+        @keyframes tools-scroll {
+          0% {
+            transform: translateX(0);
+          }
+          100% {
+            transform: translateX(-50%);
+          }
+        }
+        .animate-tools-scroll {
+          animation: tools-scroll 30s linear infinite;
+        }
+        .animate-tools-scroll:hover {
+          animation-play-state: paused;
+        }
+      `}</style>
     </motion.div>
   );
 };
@@ -232,47 +308,8 @@ const ProofSection = () => {
           ))}
         </motion.div>
 
-        {/* Tools strip */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={inView ? { opacity: 1, y: 0 } : {}}
-          transition={{
-            duration: 0.7,
-            delay: 0.6,
-            ease: [0.22, 1, 0.36, 1],
-          }}
-        >
-          <div className="flex items-center gap-3 mb-8">
-            <span className="font-sora text-[10px] text-white/40 uppercase tracking-[0.25em]">
-              Tools I build with
-            </span>
-            <span className="h-px flex-1 bg-white/[0.08]" />
-          </div>
-
-          <div className="grid grid-cols-3 md:grid-cols-6 gap-x-6 gap-y-8 md:gap-x-8 items-center">
-            {TOOLS.map((tool, i) => (
-              <motion.div
-                key={tool.id}
-                initial={{ opacity: 0, y: 14 }}
-                animate={inView ? { opacity: 1, y: 0 } : {}}
-                transition={{
-                  duration: 0.5,
-                  delay: 0.7 + i * 0.08,
-                  ease: [0.22, 1, 0.36, 1],
-                }}
-                className="group flex items-center justify-center"
-              >
-                <img
-                  src={tool.logo}
-                  alt={tool.name}
-                  title={tool.name}
-                  loading="lazy"
-                  className="h-7 md:h-8 w-auto max-w-[120px] object-contain opacity-40 grayscale invert group-hover:opacity-100 group-hover:grayscale-0 group-hover:invert-0 transition-all duration-500"
-                />
-              </motion.div>
-            ))}
-          </div>
-        </motion.div>
+        {/* Tools carousel */}
+        <ToolsCarousel inView={inView} />
       </div>
     </section>
   );

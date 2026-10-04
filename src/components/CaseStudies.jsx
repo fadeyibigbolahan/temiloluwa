@@ -1,130 +1,140 @@
 import React, { useState, useRef, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { ArrowUpRight, Building2, Briefcase, Users } from "lucide-react";
+import {
+  ArrowUpRight,
+  Building2,
+  Briefcase,
+  Layers,
+  BarChart3,
+} from "lucide-react";
 
-/**
- * CaseStudies
- *
- * Layout follows the reference: each case is one card split into a
- * visual mockup panel and a content panel (eyebrow label, title, a
- * Challenge/Solution pair, a big stat, "View case study"). Panels
- * alternate sides and treatment (solid colour / dark / tan) the way
- * the reference examples do, for rhythm down the page.
- *
- * The source data has no revenue figures, so the "big number" slot
- * uses something true to the content instead — the step count of each
- * project's own framework — rather than inventing a dollar amount.
- * "View case study" expands the card in place to show the full
- * framework and the client / agency / role detail, since there are no
- * separate case-study pages to link to yet. Swap the onClick for a
- * real link whenever those pages exist.
- */
+import item1 from "../assets/item1.jpeg";
+import item2 from "../assets/item2.jpeg";
+import item3 from "../assets/item3.jpeg";
+import item4 from "../assets/item4.jpeg";
 
 const CASE_STUDIES = [
   {
-    title: "The Consultant Growth System",
-    category: "Growth Strategy & Funnel Building",
-    client: "Independent Business Consultant",
-    agency: "Freelance Project",
-    role: "Growth Strategist & Funnel Builder",
+    id: "boss-lady",
+    category: "Sales Funnels & Marketing Automation",
+    title: "Boss Lady Property Management: A Connected Sales System",
+    client: "Boss Lady Property Management",
+    role: "Sales Funnel Builder & Automation Specialist",
+    platform: "GoHighLevel",
     description:
-      "Help an independent consultant turn scattered marketing efforts into a clear acquisition and conversion system designed to consistently generate qualified conversations.",
+      "Connect the customer journey across the Property Management Academy's offers and create an automated process for following up with prospects.",
     approach:
-      "Mapped the customer journey, refined positioning, identified acquisition opportunities, designed the conversion path, and structured a measurable lead-generation funnel.",
+      "Built the sales funnels in GoHighLevel, connected the customer journey, and implemented automated follow-up to guide prospects toward the next step.",
     framework: [
-      "Positioning",
-      "Audience",
-      "Acquisition",
-      "Lead capture",
-      "Conversion",
-      "Measurement",
+      "Customer journey mapping",
+      "Funnel build",
+      "Offer connections",
+      "Automated follow-up",
+      "Performance tracking",
     ],
     demonstrates:
-      "Growth strategy; customer journey mapping; positioning; acquisition planning; funnel strategy; conversion optimization; measurable growth systems.",
-    tagline: "Attract. Qualify. Convert.",
+      "My ability to connect sales funnels and follow-up automation into a customer journey that supports measurable sales.",
+    result: {
+      value: "$176,000",
+      label:
+        "Recorded funnel sales across 650 orders between July 21 and December 15, 2025.",
+    },
     color: "#2a71c2",
     panel: "solid",
     side: "left",
+    image: item1,
   },
 
   {
-    title: "The High-Ticket Funnel",
-    category: "Landing Page & Sales Funnel",
-    client: "Business Coaching Brand",
-    agency: "Freelance Project",
-    role: "Funnel Strategist & Builder",
+    id: "spaulding-decon",
+    category: "Membership & Online Course Development",
+    title: "Spaulding Decon Industries: Thinkific Membership Build",
+    client: "Spaulding Decon Industries",
+    role: "Thinkific Membership Developer",
+    platform: "Thinkific",
     description:
-      "Build a conversion-focused funnel that moves prospects from an initial offer to a booked strategy call with a high-ticket business coach.",
+      "Create a dedicated membership platform for delivering the company's training online.",
     approach:
-      "Developed the funnel architecture, landing-page messaging, lead capture experience, qualification flow, booking journey, follow-up sequence, and conversion-focused CTAs.",
+      "Built the membership in Thinkific, creating a central platform for learners to access the training.",
     framework: [
-      "Traffic",
-      "Landing page",
-      "Lead magnet",
-      "Qualification",
-      "Booking",
-      "Follow-up",
-      "Conversion",
-    ],
-    demonstrates:
-      "Landing-page strategy; sales funnels; offer positioning; conversion copywriting; lead qualification; booking systems; customer journeys.",
-    tagline: "Capture. Qualify. Book.",
-    color: "#8B5CF6",
-    panel: "dark",
-    side: "right",
-  },
-
-  {
-    title: "The Automated Lead Engine",
-    category: "CRM & AI Automation",
-    client: "Growth Marketing Agency",
-    agency: "Freelance Project",
-    role: "CRM & Automation Specialist",
-    description:
-      "Connect lead capture, CRM pipelines, automated follow-ups and AI-assisted communication into one system that reduces manual sales work.",
-    approach:
-      "Designed the CRM pipeline, connected lead sources, automated email and SMS follow-ups, created lead-routing workflows, and introduced AI tools for faster communication and lead management.",
-    framework: [
-      "Lead capture",
-      "CRM",
-      "Pipeline",
-      "Automation",
-      "AI",
-      "Follow-up",
+      "Platform setup",
+      "Course structure",
+      "Member access",
+      "Paid enrollment",
       "Reporting",
     ],
     demonstrates:
-      "CRM architecture; workflow automation; lead management; email and SMS automation; AI tools; pipeline design; sales operations.",
-    tagline: "Capture. Automate. Scale.",
-    color: "#10B981",
-    panel: "tan",
-    side: "left",
+      "My ability to build membership platforms that support online training delivery and paid enrollment.",
+    result: {
+      value: "$137,347",
+      label:
+        "In recorded revenue, with 1,544 new accounts and 1,206 enrollments (Sep 9, 2019 – Jan 27, 2025).",
+    },
+    color: "#8B5CF6",
+    panel: "dark",
+    side: "right",
+    image: item2,
   },
 
   {
-    title: "The LinkedIn Authority Engine",
-    category: "LinkedIn & Personal Brand Growth",
-    client: "B2B Technology Founder",
-    agency: "Freelance Project",
-    role: "Personal Brand & Growth Strategist",
+    id: "launchtik",
+    category: "Webinar Funnels & AI Automation",
+    title: "Automated Webinar System",
+    client: "LaunchTik",
+    role: "Webinar Funnel & AI Automation Specialist",
+    platform: "GoHighLevel & Figma",
     description:
-      "Build a LinkedIn content and audience-growth system that turns the founder's expertise into visibility, authority, and qualified business opportunities.",
+      "Create a connected webinar journey that guides prospects from registration to the offer, with automated follow-up.",
     approach:
-      "Defined the founder's positioning, developed content pillars, structured the publishing system, created audience-growth strategies, and connected content activity to lead-generation opportunities.",
+      "Mapped the customer journey, designed the funnel wireframe in Figma, and built the webinar funnel in GoHighLevel. Connected the automations and implemented an AI-powered follow-up system to support the sales process.",
     framework: [
-      "Positioning",
-      "Content",
-      "Audience",
-      "Engagement",
-      "Authority",
-      "Lead generation",
+      "Customer Journey Mapping",
+      "Figma Wireframe",
+      "Webinar Funnel Build",
+      "Workflow Automation",
+      "AI-Powered Follow-Up",
     ],
     demonstrates:
-      "LinkedIn strategy; personal branding; content systems; audience growth; thought leadership; authority building; organic lead generation.",
-    tagline: "Create. Connect. Convert.",
+      "My ability to connect funnel strategy, design, automation, and AI follow-up into a complete webinar sales system.",
+    result: {
+      value: "£81,395",
+      label: "Recorded across 40 received invoices.",
+    },
+    color: "#10B981",
+    panel: "tan",
+    side: "left",
+    image: item3,
+  },
+
+  {
+    id: "patrick",
+    category: "LinkedIn Content & AI Automation",
+    title: "LinkedIn Content Growth System",
+    client: "Patrick — Visibility & Positioning Coach",
+    role: "Content Systems & AI Automation Strategist",
+    platform: "Content Automation & Personal Brand Growth",
+    description:
+      "Create a consistent content system that preserves Patrick's brand voice while supporting his visibility across social platforms.",
+    approach:
+      "Built an automated growth engine with AI workflows that generate written content in Patrick's brand tone, create video scripts in his voice, and produce images for his social platforms.",
+    framework: [
+      "Brand Voice",
+      "AI Content Generation",
+      "AI Script Writing",
+      "Automated Image Creation",
+      "Content Delivery",
+    ],
+    demonstrates:
+      "My ability to build AI content systems that maintain a client's voice across posts, video scripts, and social images.",
+    result: {
+      value: "725,855",
+      label:
+        "Impressions recorded over 90 days — with 10,950 engagements, 78 posts, and 37,899 total followers.",
+    },
     color: "#F59E0B",
     panel: "solid",
     side: "right",
+    image: item4,
   },
 ];
 
@@ -141,75 +151,79 @@ const WindowChrome = ({ tint }) => (
 );
 
 const VisualPanel = ({ caseStudy }) => {
-  const { panel, color, tagline, category, framework } = caseStudy;
+  const { panel, color, image, title } = caseStudy;
+
+  // Panel padding reduced so image fills nearly the entire panel.
+  const baseWrap =
+    "relative flex h-full min-h-[320px] md:min-h-[420px] lg:min-h-[480px] items-center justify-center overflow-hidden rounded-2xl";
 
   if (panel === "dark") {
     return (
-      <div className="relative flex h-full min-h-[280px] flex-col justify-between rounded-2xl border border-white/10 bg-white/[0.03] p-6">
-        <div>
-          <p
-            className="font-sora text-[11px] font-medium uppercase tracking-[0.18em]"
-            style={{ color }}
-          >
-            Framework pipeline
-          </p>
-          <div className="mt-5 space-y-3">
-            {framework.slice(0, 3).map((step, i) => (
-              <div
-                key={step}
-                className="flex items-center justify-between border-b border-white/10 pb-3 font-sora text-sm text-white/80"
-              >
-                <span>{step}</span>
-                <span style={{ color }} className="font-semibold">
-                  {String(i + 1).padStart(2, "0")}
-                </span>
-              </div>
-            ))}
-          </div>
-        </div>
-        <svg viewBox="0 0 200 50" className="h-10 w-full" fill="none">
-          <path
-            d="M2 40 L60 40 L95 12 L200 12"
-            stroke={color}
-            strokeWidth="2"
-            strokeLinecap="round"
+      <div
+        className={`${baseWrap} border border-white/10 bg-white/[0.03] p-3 md:p-4`}
+      >
+        <div className="relative h-full w-full overflow-hidden rounded-xl border border-white/10 shadow-2xl">
+          <WindowChrome tint="#4B4B4B" />
+          <img
+            src={image}
+            alt={title}
+            loading="lazy"
+            className="h-[calc(100%-2rem)] w-full object-cover object-top"
           />
-        </svg>
+        </div>
+        <div
+          className="pointer-events-none absolute inset-0 rounded-2xl"
+          style={{
+            background: `radial-gradient(circle at 50% 0%, ${color}22, transparent 70%)`,
+          }}
+        />
       </div>
     );
   }
 
-  const bg = panel === "solid" ? color : "#E9E1D3";
-  const cardBg = panel === "solid" ? "#FFFFFF" : "#FFFFFF";
-
-  return (
-    <div
-      className="relative flex h-full min-h-[280px] items-center justify-center rounded-2xl p-6"
-      style={{ backgroundColor: bg }}
-    >
+  if (panel === "tan") {
+    return (
       <div
-        className="w-full max-w-[260px] overflow-hidden rounded-xl shadow-xl"
-        style={{ backgroundColor: cardBg }}
+        className={`${baseWrap} p-3 md:p-4`}
+        style={{ backgroundColor: "#E9E1D3" }}
       >
-        <WindowChrome tint="#D8D8D8" />
-        <div className="px-6 pb-8 pt-6">
-          <p className="font-sora text-[10px] font-medium uppercase tracking-[0.18em] text-gray-400">
-            {category}
-          </p>
-          <p className="mt-3 font-sora text-xl font-bold leading-snug text-[#1A1A1A]">
-            {tagline}
-          </p>
-          <div
-            className="mt-4 h-1 w-10 rounded-full"
-            style={{ backgroundColor: color }}
+        <div className="relative h-full w-full overflow-hidden rounded-xl border border-black/10 shadow-xl">
+          <WindowChrome tint="#D8D8D8" />
+          <img
+            src={image}
+            alt={title}
+            loading="lazy"
+            className="h-[calc(100%-2rem)] w-full object-cover object-top"
           />
         </div>
       </div>
+    );
+  }
+
+  // solid
+  return (
+    <div
+      className={`${baseWrap} p-3 md:p-4`}
+      style={{ backgroundColor: color }}
+    >
+      <div className="relative h-full w-full overflow-hidden rounded-xl border border-white/20 shadow-2xl">
+        <WindowChrome tint="#D8D8D8" />
+        <img
+          src={image}
+          alt={title}
+          loading="lazy"
+          className="h-[calc(100%-2rem)] w-full object-cover object-top"
+        />
+      </div>
+      <span
+        className="pointer-events-none absolute -bottom-10 -right-10 h-40 w-40 rounded-full opacity-30 blur-2xl"
+        style={{ backgroundColor: color }}
+      />
     </div>
   );
 };
 
-const CaseCard = ({ caseStudy, index }) => {
+const CaseCard = ({ caseStudy }) => {
   const [open, setOpen] = useState(false);
   const reversed = caseStudy.side === "right";
 
@@ -236,7 +250,7 @@ const CaseCard = ({ caseStudy, index }) => {
           >
             {caseStudy.category}
           </p>
-          <h3 className="mt-3 font-sora text-3xl font-bold tracking-tight text-white md:text-4xl">
+          <h3 className="mt-3 font-sora text-2xl font-bold tracking-tight text-white md:text-3xl lg:text-4xl">
             {caseStudy.title}
           </h3>
 
@@ -260,18 +274,18 @@ const CaseCard = ({ caseStudy, index }) => {
           </div>
 
           <div className="mt-6 flex items-end justify-between gap-6">
-            <div>
-              <p className="font-sora text-4xl font-bold tracking-tight text-white">
-                {caseStudy.framework.length}-step
+            <div className="min-w-0">
+              <p className="font-sora text-3xl font-bold tracking-tight text-white md:text-4xl">
+                {caseStudy.result.value}
               </p>
-              <p className="mt-1 font-sora text-xs text-gray-500">
-                framework built for this project
+              <p className="mt-1 max-w-xs font-sora text-xs leading-relaxed text-gray-500">
+                {caseStudy.result.label}
               </p>
             </div>
 
             <button
               onClick={() => setOpen((o) => !o)}
-              className="group mb-1 inline-flex items-center gap-2 font-sora text-sm font-semibold text-white transition-colors hover:opacity-70"
+              className="group mb-1 inline-flex flex-shrink-0 items-center gap-2 font-sora text-sm font-semibold text-white transition-colors hover:opacity-70"
             >
               {open ? "Close" : "View case study"}
               <ArrowUpRight
@@ -314,13 +328,13 @@ const CaseCard = ({ caseStudy, index }) => {
                     </div>
                   </div>
                   <div className="flex items-start gap-3">
-                    <Users className="mt-0.5 h-4 w-4 text-gray-500" />
+                    <Layers className="mt-0.5 h-4 w-4 text-gray-500" />
                     <div>
                       <p className="font-sora text-[11px] text-gray-500">
-                        Agency
+                        Platform
                       </p>
                       <p className="font-sora text-sm font-medium text-white">
-                        {caseStudy.agency}
+                        {caseStudy.platform}
                       </p>
                     </div>
                   </div>
@@ -328,7 +342,7 @@ const CaseCard = ({ caseStudy, index }) => {
 
                 <div className="mt-8">
                   <p className="mb-4 font-sora text-sm font-semibold text-white">
-                    Framework
+                    Project approach
                   </p>
                   <div className="flex flex-col">
                     {caseStudy.framework.map((step, i) => (
@@ -351,9 +365,12 @@ const CaseCard = ({ caseStudy, index }) => {
                 </div>
 
                 <div className="mt-2">
-                  <p className="mb-2 font-sora text-sm font-semibold text-white">
-                    What this demonstrates
-                  </p>
+                  <div className="mb-2 flex items-center gap-2">
+                    <BarChart3 className="h-4 w-4 text-gray-500" />
+                    <p className="font-sora text-sm font-semibold text-white">
+                      What this demonstrates
+                    </p>
+                  </div>
                   <p className="font-lora text-sm leading-relaxed text-gray-400">
                     {caseStudy.demonstrates}
                   </p>
@@ -391,7 +408,6 @@ const CaseStudies = () => {
       ref={sectionRef}
       className="relative overflow-hidden bg-[#0B0D12] py-24 md:py-32"
     >
-      {/* Ambient glow, matching the Capabilities section */}
       <div className="pointer-events-none absolute -top-40 left-1/4 h-[36rem] w-[36rem] rounded-full bg-[#7C5CFF]/20 blur-[140px]" />
       <div className="pointer-events-none absolute -bottom-40 right-1/4 h-[36rem] w-[36rem] rounded-full bg-[#00C48C]/20 blur-[140px]" />
 
@@ -417,12 +433,8 @@ const CaseStudies = () => {
         </motion.div>
 
         <div className="space-y-6 md:space-y-8">
-          {CASE_STUDIES.map((caseStudy, index) => (
-            <CaseCard
-              key={caseStudy.title}
-              caseStudy={caseStudy}
-              index={index}
-            />
+          {CASE_STUDIES.map((caseStudy) => (
+            <CaseCard key={caseStudy.id} caseStudy={caseStudy} />
           ))}
         </div>
       </div>

@@ -1,6 +1,6 @@
 import React from "react";
 import { motion } from "framer-motion";
-import aboutImage from "../assets/okeowo-2.png"; // optional: swap in a real photo
+import aboutImage from "../assets/okeowo-2.jpeg"; // optional: swap in a real photo
 
 const ABOUT_IMAGE = aboutImage; // set to `aboutImage` once you have a photo
 
@@ -83,7 +83,7 @@ const About = () => {
               className="absolute -bottom-5 -right-3 md:-right-8 bg-[#2A71C2] text-white rounded-xl px-5 py-4 shadow-[0_14px_30px_-12px_rgba(224,112,47,0.55)]"
             >
               <p className="font-sora text-xs md:text-sm font-semibold leading-snug">
-                Based in Nigeria.
+                Location is not a barrier.
                 <br />
                 Working globally.
               </p>
