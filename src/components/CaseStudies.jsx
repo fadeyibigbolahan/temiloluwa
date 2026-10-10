@@ -44,7 +44,6 @@ const CASE_STUDIES = [
     side: "left",
     image: item1,
   },
-
   {
     id: "spaulding-decon",
     category: "Membership & Online Course Development",
@@ -75,7 +74,6 @@ const CASE_STUDIES = [
     side: "right",
     image: item2,
   },
-
   {
     id: "launchtik",
     category: "Webinar Funnels & AI Automation",
@@ -105,7 +103,6 @@ const CASE_STUDIES = [
     side: "left",
     image: item3,
   },
-
   {
     id: "patrick",
     category: "LinkedIn Content & AI Automation",
@@ -138,87 +135,46 @@ const CASE_STUDIES = [
   },
 ];
 
-const WindowChrome = ({ tint }) => (
-  <div className="flex gap-1.5 px-4 pt-4">
-    {[0, 1, 2].map((i) => (
-      <span
-        key={i}
-        className="h-2 w-2 rounded-full"
-        style={{ backgroundColor: tint }}
-      />
-    ))}
-  </div>
-);
-
 const VisualPanel = ({ caseStudy }) => {
   const { panel, color, image, title } = caseStudy;
 
-  // Panel padding reduced so image fills nearly the entire panel.
-  const baseWrap =
-    "relative flex h-full min-h-[320px] md:min-h-[420px] lg:min-h-[480px] items-center justify-center overflow-hidden rounded-2xl";
+  return (
+    <div
+      className={`relative h-fit min-w-0 self-center overflow-hidden rounded-2xl p-3 md:p-4 ${
+        panel === "dark" ? "border border-white/10 bg-white/[0.03]" : ""
+      }`}
+      style={
+        panel === "solid"
+          ? { backgroundColor: color }
+          : panel === "tan"
+            ? { backgroundColor: "#E9E1D3" }
+            : undefined
+      }
+    >
+      <div className="relative w-full overflow-hidden rounded-xl">
+        <img
+          src={image}
+          alt={title}
+          loading="lazy"
+          className="block h-auto w-full rounded-xl object-contain"
+        />
+      </div>
 
-  if (panel === "dark") {
-    return (
-      <div
-        className={`${baseWrap} border border-white/10 bg-white/[0.03] p-3 md:p-4`}
-      >
-        <div className="relative h-full w-full overflow-hidden rounded-xl border border-white/10 shadow-2xl">
-          <WindowChrome tint="#4B4B4B" />
-          <img
-            src={image}
-            alt={title}
-            loading="lazy"
-            className="h-[calc(100%-2rem)] w-full object-cover object-top"
-          />
-        </div>
+      {panel === "dark" && (
         <div
           className="pointer-events-none absolute inset-0 rounded-2xl"
           style={{
             background: `radial-gradient(circle at 50% 0%, ${color}22, transparent 70%)`,
           }}
         />
-      </div>
-    );
-  }
+      )}
 
-  if (panel === "tan") {
-    return (
-      <div
-        className={`${baseWrap} p-3 md:p-4`}
-        style={{ backgroundColor: "#E9E1D3" }}
-      >
-        <div className="relative h-full w-full overflow-hidden rounded-xl border border-black/10 shadow-xl">
-          <WindowChrome tint="#D8D8D8" />
-          <img
-            src={image}
-            alt={title}
-            loading="lazy"
-            className="h-[calc(100%-2rem)] w-full object-cover object-top"
-          />
-        </div>
-      </div>
-    );
-  }
-
-  // solid
-  return (
-    <div
-      className={`${baseWrap} p-3 md:p-4`}
-      style={{ backgroundColor: color }}
-    >
-      <div className="relative h-full w-full overflow-hidden rounded-xl border border-white/20 shadow-2xl">
-        <WindowChrome tint="#D8D8D8" />
-        <img
-          src={image}
-          alt={title}
-          loading="lazy"
-          className="h-[calc(100%-2rem)] w-full object-cover object-top"
+      {panel === "solid" && (
+        <span
+          className="pointer-events-none absolute -bottom-10 -right-10 h-40 w-40 rounded-full opacity-30 blur-2xl"
+          style={{ backgroundColor: color }}
         />
-      </div>
-      <span
-        className="pointer-events-none absolute -bottom-10 -right-10 h-40 w-40 rounded-full opacity-30 blur-2xl"
-        style={{ backgroundColor: color }}
-      />
+      )}
     </div>
   );
 };
@@ -236,20 +192,20 @@ const CaseCard = ({ caseStudy }) => {
       className="rounded-[2rem] border border-white/10 bg-white/[0.04] p-4 backdrop-blur-sm md:p-5"
     >
       <div
-        className={`grid gap-4 md:grid-cols-2 md:gap-6 ${
+        className={`grid items-center gap-4 md:grid-cols-2 md:gap-6 ${
           reversed ? "md:[&>*:first-child]:order-2" : ""
         }`}
       >
         <VisualPanel caseStudy={caseStudy} />
 
-        {/* Content panel */}
-        <div className="flex flex-col justify-center px-2 py-4 md:px-6">
+        <div className="flex min-w-0 flex-col justify-center px-2 py-4 md:px-6">
           <p
             className="font-sora text-[11px] font-semibold uppercase tracking-[0.18em]"
             style={{ color: caseStudy.color }}
           >
             {caseStudy.category}
           </p>
+
           <h3 className="mt-3 font-sora text-2xl font-bold tracking-tight text-white md:text-3xl lg:text-4xl">
             {caseStudy.title}
           </h3>
@@ -263,6 +219,7 @@ const CaseCard = ({ caseStudy }) => {
                 {caseStudy.description}
               </p>
             </div>
+
             <div className="flex items-start gap-4 py-4">
               <span className="w-20 flex-shrink-0 font-sora text-[11px] font-semibold uppercase tracking-wide text-gray-500">
                 Solution
@@ -285,12 +242,15 @@ const CaseCard = ({ caseStudy }) => {
 
             <button
               onClick={() => setOpen((o) => !o)}
+              aria-expanded={open}
               className="group mb-1 inline-flex flex-shrink-0 items-center gap-2 font-sora text-sm font-semibold text-white transition-colors hover:opacity-70"
             >
               {open ? "Close" : "View case study"}
               <ArrowUpRight
                 className="h-4 w-4 transition-transform duration-300"
-                style={{ transform: open ? "rotate(135deg)" : "rotate(0deg)" }}
+                style={{
+                  transform: open ? "rotate(135deg)" : "rotate(0deg)",
+                }}
               />
             </button>
           </div>
@@ -301,12 +261,15 @@ const CaseCard = ({ caseStudy }) => {
                 initial={{ height: 0, opacity: 0 }}
                 animate={{ height: "auto", opacity: 1 }}
                 exit={{ height: 0, opacity: 0 }}
-                transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
+                transition={{
+                  duration: 0.4,
+                  ease: [0.22, 1, 0.36, 1],
+                }}
                 className="overflow-hidden"
               >
                 <div className="mt-8 grid gap-8 border-t border-white/10 pt-8 sm:grid-cols-3">
                   <div className="flex items-start gap-3">
-                    <Building2 className="mt-0.5 h-4 w-4 text-gray-500" />
+                    <Building2 className="mt-0.5 h-4 w-4 flex-shrink-0 text-gray-500" />
                     <div>
                       <p className="font-sora text-[11px] text-gray-500">
                         Client
@@ -316,8 +279,9 @@ const CaseCard = ({ caseStudy }) => {
                       </p>
                     </div>
                   </div>
+
                   <div className="flex items-start gap-3">
-                    <Briefcase className="mt-0.5 h-4 w-4 text-gray-500" />
+                    <Briefcase className="mt-0.5 h-4 w-4 flex-shrink-0 text-gray-500" />
                     <div>
                       <p className="font-sora text-[11px] text-gray-500">
                         Role
@@ -327,8 +291,9 @@ const CaseCard = ({ caseStudy }) => {
                       </p>
                     </div>
                   </div>
+
                   <div className="flex items-start gap-3">
-                    <Layers className="mt-0.5 h-4 w-4 text-gray-500" />
+                    <Layers className="mt-0.5 h-4 w-4 flex-shrink-0 text-gray-500" />
                     <div>
                       <p className="font-sora text-[11px] text-gray-500">
                         Platform
@@ -344,6 +309,7 @@ const CaseCard = ({ caseStudy }) => {
                   <p className="mb-4 font-sora text-sm font-semibold text-white">
                     Project approach
                   </p>
+
                   <div className="flex flex-col">
                     {caseStudy.framework.map((step, i) => (
                       <div key={step} className="flex items-stretch">
@@ -398,7 +364,11 @@ const CaseStudies = () => {
       },
       { threshold: 0.1 },
     );
-    if (sectionRef.current) observer.observe(sectionRef.current);
+
+    if (sectionRef.current) {
+      observer.observe(sectionRef.current);
+    }
+
     return () => observer.disconnect();
   }, []);
 
@@ -421,10 +391,12 @@ const CaseStudies = () => {
           <p className="mb-5 font-sora text-xs font-medium uppercase tracking-[0.2em] text-gray-400">
             Deep dives
           </p>
+
           <div className="flex flex-col gap-8 lg:flex-row lg:items-end lg:justify-between">
             <h2 className="font-sora text-5xl font-bold leading-[0.95] tracking-tight text-white md:text-6xl lg:text-7xl">
               Case Studies
             </h2>
+
             <p className="max-w-md font-lora leading-relaxed text-gray-400">
               A closer look at how each project was approached, from brief to
               framework.
